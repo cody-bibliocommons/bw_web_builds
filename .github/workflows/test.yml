@@ -22,6 +22,8 @@ jobs:
         shell: bash
         run: |
           apt-get update && apt-get install -y make git curl tar
+          curl -fsSL https://get.docker.com -o get-docker.sh
+          sh get-docker.sh
           curl -fsSL https://nodejs.org/dist/v20.18.3/node-v20.18.3-linux-x64.tar.gz -o node.tar.gz
           mkdir -p /usr/local/node 
           tar -xzf node.tar.gz -C /usr/local/node --strip-components=1
