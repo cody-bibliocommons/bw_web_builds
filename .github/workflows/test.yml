@@ -1,0 +1,49 @@
+name: test
+
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/ci.yml"
+      - "patches/v20*.patch"
+      - "resources/**"
+      - "scripts/**"
+      - "Dockerfile"
+  workflow_dispatch:
+
+jobs:
+  docker-build-test:
+    runs-on: ubuntu-latest
+    container: 
+      image: ubuntu:24.04
+    env:
+      BUILDKIT_PROGRESS: plain
+    steps:
+      - name: Setup Environment
+        shell: bash
+        run: |
+          apt-get update && apt-get install -y make git curl tar
+          curl -fsSL https://nodejs.org/dist/v20.18.3/node-v20.18.3-linux-x64.tar.gz -o node.tar.gz
+          mkdir -p /usr/local/node 
+          tar -xzf node.tar.gz -C /usr/local/node --strip-components=1
+          ln -s /usr/local/node/bin/node /usr/local/bin/node
+          ln -s /usr/local/node/bin/npm /usr/local/bin/npm
+
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+      - name: Build and Extract
+        shell: bash
+        run: |
+          make docker-extract
+
+      - name: Generate checksum
+        shell: bash
+        run: |
+          echo "sha256sum: $(sha256sum container_builds/bw_web_vault.tar.gz)"
+
+      - name: "Upload web-vault artifact"
+        uses: actions/upload-artifact@b4b15b8c7c6ac21ea08fcf65892d2ee8f75cf882 # v4.4.3
+        with:
+          name: web-vault
+          compression-level: 0
+          path: container_builds/bw_web_vault.tar.gz
