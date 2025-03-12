@@ -115,7 +115,7 @@ index a39c045e0e..9d72e609b4 100644
     loading state here for process reloading. -->
    <div class="tw-p-8 tw-flex">
 -    <img class="new-logo-themed" alt="Bitwarden" />
-+    <img class="new-logo-themed" alt="Vaultwarden" />
++    <img class="new-logo-themed" alt="Bibliowarden" />
      <div class="spinner-container tw-justify-center">
        <i
          class="bwi bwi-spinner bwi-spin bwi-3x tw-text-muted"
@@ -153,12 +153,12 @@ index de187d2c33..c33f49fd70 100644
        element: document.getElementById("qr"),
        value:
 -        "otpauth://totp/Bitwarden:" +
-+        "otpauth://totp/Vaultwarden:" +
++        "otpauth://totp/Bibliowarden:" +
          Utils.encodeRFC3986URIComponent(email) +
          "?secret=" +
          encodeURIComponent(this.key) +
 -        "&issuer=Bitwarden",
-+        "&issuer=Vaultwarden",
++        "&issuer=Bibliowarden",
        size: 160,
      });
    }
@@ -318,7 +318,7 @@ index ff0aea47b9..21ec31a19a 100644
          this.currentUrl = event.url;
  
 -        let title = i18nService.t("bitWebVault");
-+        let title = "Vaultwarden Web";
++        let title = "Bibliowarden Web";
  
          if (this.currentUrl.includes("/sm/")) {
            title = i18nService.t("bitSecretsManager");
@@ -353,13 +353,13 @@ index 72f0f1f1da..cea0867131 100644
  <div class="container my-5 text-muted text-center">
 -  <environment-selector></environment-selector>
 -  &copy; {{ year }} Bitwarden Inc. <br />
-+  Vaultwarden Web<br />
++  Bibliowarden Web<br />
    {{ "versionNumber" | i18n: version }}
 +  <br /><br />
 +  <div class="small">
-+    A modified version of the Bitwarden&reg; Web Vault for Vaultwarden (an unofficial rewrite of the
++    A modified version of the Bitwarden&reg; Web Vault for Bibliowarden (an unofficial rewrite of the
 +    Bitwarden&reg; server).<br />
-+    Vaultwarden is not associated with the Bitwarden&reg; project nor Bitwarden Inc.
++    Bibliowarden is not associated with the Bitwarden&reg; project nor Bitwarden Inc.
 +  </div>
  </div>
 diff --git a/apps/web/src/app/layouts/header/web-header.component.html b/apps/web/src/app/layouts/header/web-header.component.html
@@ -515,7 +515,7 @@ index 0b8ea86491..5d98411f46 100644
      <meta name="theme-color" content="#175DDC" />
  
 -    <title page-title>Bitwarden Web vault</title>
-+    <title page-title>Vaultwarden Web</title>
++    <title page-title>Bibliowarden Web</title>
  
      <link rel="apple-touch-icon" sizes="180x180" href="images/icons/apple-touch-icon.png" />
      <link rel="icon" type="image/png" sizes="32x32" href="images/icons/favicon-32x32.png" />
@@ -530,7 +530,7 @@ index 0b8ea86491..5d98411f46 100644
        <!-- Note: any changes to this html need to be made in the app.component.html as well -->
        <div class="tw-p-8 tw-flex">
 -        <img class="new-logo-themed" alt="Bitwarden" />
-+        <img class="new-logo-themed" alt="Vaultwarden" />
++        <img class="new-logo-themed" alt="Bibliowarden" />
          <div class="spinner-container tw-justify-center">
            <i
              class="bwi bwi-spinner bwi-spin bwi-3x tw-text-muted"
@@ -541,7 +541,7 @@ index 92a1204c60..d9ff4771a3 100644
 @@ -1,5 +1,5 @@
  {
 -  "name": "Bitwarden Vault",
-+  "name": "Vaultwarden Web",
++  "name": "Bibliowarden Web",
    "icons": [
      {
        "src": "images/icons/android-chrome-192x192.png",
@@ -699,13 +699,13 @@ index cb3445abd9..6ad354505d 100644
      <ng-container *ngIf="!hideYearAndVersion">
 -      <div bitTypography="body2">&copy; {{ year }} Bitwarden Inc.</div>
 -      <div bitTypography="body2">{{ version }}</div>
-+      <div bitTypography="body2">Vaultwarden Web</div>
++      <div bitTypography="body2">Bibliowarden Web</div>
 +      <div bitTypography="body2">Version {{ version }}</div>
 +      <br />
 +      <div class="small">
-+        A modified version of the Bitwarden&reg; Web Vault for Vaultwarden (an unofficial rewrite of
++        A modified version of the Bitwarden&reg; Web Vault for Bibliowarden (an unofficial rewrite of
 +        the Bitwarden&reg; server).<br />
-+        Vaultwarden is not associated with the Bitwarden&reg; project nor Bitwarden Inc.
++        Bibliowarden is not associated with the Bitwarden&reg; project nor Bitwarden Inc.
 +      </div>
      </ng-container>
    </footer>
@@ -738,7 +738,7 @@ index 0a5a66337a..af5f0fb57a 100644
    --color-text-code: 192 17 118;
  
 -  --color-marketing-logo: 23 93 220;
-+  --color-marketing-logo: 15 15 15; /* The Vaultwarden Logo */
++  --color-marketing-logo: 15 15 15; /* The Bibliowarden Logo */
  
    --tw-ring-offset-color: #ffffff;
  }
